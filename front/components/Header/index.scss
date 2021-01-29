@@ -1,0 +1,18 @@
+.header {
+    background-color: #ffffff;
+
+    .ant-menu-horizontal {
+        border-bottom: 0;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        width: 48px;
+
+        img {
+            height: 40px;
+        }
+    }
+}
