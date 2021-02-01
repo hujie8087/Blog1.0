@@ -1,0 +1,21 @@
+.list-wapper {
+    .list-title {
+        font-size: 1.3rem;
+        color: #1e9eff;
+        padding-bottom: 0 0.5rem;
+    }
+
+    .list-context {
+        color: #777777;
+        padding: 0.5rem;
+    }
+
+    .list-icon {
+        padding: 0.5rem 0;
+        color: #aaaaaa;
+
+        >span {
+            margin-right: 15px;
+        }
+    }
+}

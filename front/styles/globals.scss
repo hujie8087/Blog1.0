@@ -2,6 +2,40 @@ html body {
   padding: 0;
   margin: 0;
   background-color: #f6f6f6;
+
+  .main {
+    margin-top: 0.3rem;
+
+    .col-left {
+      background-color: #FFF;
+      padding: .3rem;
+      border-radius: .3rem;
+      border: 1px solid #eee;
+      margin-bottom: 16px;
+    }
+
+    .col-right {
+      margin-left: 0.5rem;
+      padding: 0 1rem;
+
+      .comm-box {
+        background-color: #FFF;
+        margin-left: .5rem;
+        padding: .3rem;
+        border-radius: .3rem;
+        border: 1px solid #eee;
+
+
+      }
+
+      .comm-main {
+        margin-top: .5rem !important;
+        max-width: 1100px;
+        margin: 0 auto;
+
+      }
+    }
+  }
 }
 
 a {
