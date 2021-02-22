@@ -4,43 +4,17 @@ import {
   FolderOutlined,
   FireOutlined,
 } from "@ant-design/icons";
+import axios from "axios";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import servicePath from "../config/apiUrl";
 import Author from "../components/Author";
 import "../styles/index.scss";
 
-function Home() {
-  const [homeList, setHomeList] = useState([
-    {
-      title: "文章标题一",
-      context: "的范德萨卡机范德萨开服活动范德萨艰苦奋斗撒反倒是卡金凤凰",
-    },
-    {
-      title: "文章标题二",
-      context: "的范德萨卡机范德萨开服活动范德萨艰苦奋斗撒反倒是卡金凤凰",
-    },
-    {
-      title: "文章标题三",
-      context: "的范德萨卡机范德萨开服活动范德萨艰苦奋斗撒反倒是卡金凤凰",
-    },
-    {
-      title: "文章标题四",
-      context: "的范德萨卡机范德萨开服活动范德萨艰苦奋斗撒反倒是卡金凤凰",
-    },
-  ]);
+function Home(list) {
+  const [homeList, setHomeList] = useState(list.data);
   const [loading, setLoading] = useState(false);
 
-  const getHomeListInfo = async () => {
-    const res = await getHomeList();
-    if (res.code === 0) {
-      setLoading(false);
-      setHomeList(res);
-    } else {
-      message.error(res.msg || "网络繁忙，请稍后重试");
-    }
-  };
-  useEffect(() => {
-    return () => {};
-  }, []);
   return (
     <div className="container">
       <Row className="main" type="flex" justify="center">
@@ -53,22 +27,26 @@ function Home() {
             className="list-wapper"
             renderItem={(item) => (
               <List.Item>
-                <div className="list-title">{item.title}</div>
+                <div className="list-title">
+                  <Link href={{ pathname: `article/${item.id}` }}>
+                    <a>{item.title}</a>
+                  </Link>
+                </div>
                 <div className="list-icon">
                   <span>
                     <CalendarOutlined />
-                    2021-01-29
+                    {item.addTime}
                   </span>
                   <span>
                     <FolderOutlined />
-                    视频教程
+                    {item.typeName}
                   </span>
                   <span>
                     <FireOutlined />
-                    100人
+                    {item.view_count}人
                   </span>
                 </div>
-                <div className="list-context">{item.context}</div>
+                <div className="list-context">{item.introduce}</div>
               </List.Item>
             )}
           ></List>
@@ -80,5 +58,15 @@ function Home() {
     </div>
   );
 }
+
+Home.getInitialProps = async () => {
+  const promise = new Promise((resolve) => {
+    axios(servicePath.getArticleList).then((res) => {
+      resolve(res.data);
+    });
+  });
+
+  return await promise;
+};
 
 export default Home;

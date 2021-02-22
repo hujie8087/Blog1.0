@@ -4,6 +4,7 @@ import {
   FolderOutlined,
   FireOutlined,
 } from "@ant-design/icons";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Author from "../../components/Author";
 import "./index.scss";
@@ -53,7 +54,11 @@ function Article() {
             className="list-wapper"
             renderItem={(item) => (
               <List.Item>
-                <div className="list-title">{item.title}</div>
+                <div className="list-title">
+                  <Link href={{ pathname: `/detail/${item.id}` }}>
+                    {item.title}
+                  </Link>
+                </div>
                 <div className="list-icon">
                   <span>
                     <CalendarOutlined />
